@@ -3,13 +3,13 @@ import pandas as pd
 import csv
 import copy
 
-def filereader(filename,filetype='csv',header=True):
+def filereader(filename,filetype='csv',header=True,sep=","):
     '''read the raw data and return numpy array'''
     
     opener = open(filename)
     
     if filetype == 'csv':
-      reader = csv.read(opener,delimiter=',')
+      reader = csv.read(opener,delimiter=sep)
       
       if header:
          head = next(reader)
@@ -20,7 +20,7 @@ def filereader(filename,filetype='csv',header=True):
     
     if filetype == 'txt':
       data = [line.rstrip('\r\n') for line in opener]
-      data = list(map(lambda x: x.split(' '), data))
+      data = list(map(lambda x: x.split(sep), data))
       
       if header:
          head = data[0]
