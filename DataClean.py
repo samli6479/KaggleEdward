@@ -57,7 +57,7 @@ def intergized(data):
         frame.append(datas)
     return np.array(frame).transpose()
 
-def normalize(data,method=False):
+def normalize(data,method=True):
     '''
     normalize data with (data-mean)/std if method is True, otherwise (data-mean) 
     '''
