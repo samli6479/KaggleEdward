@@ -19,7 +19,7 @@ def filereader(filename,filetype='csv',header=True,sep=",",colindex=None):
       
       if header:
          head = np.array(next(reader))[colindex]
-         print(head)
+         print head
          
       data = [np.array(row) for row in reader]
 
@@ -35,7 +35,7 @@ def filereader(filename,filetype='csv',header=True,sep=",",colindex=None):
       if header:
          head = data[0]
          data = np.array(filter(lambda a: a != head,data))
-         print(np.array(head)[colindex])
+         print np.array(head)[colindex]
 
       if colindex:
          data = [tuple(item for item in row[colindex]) for row in data]
@@ -64,10 +64,10 @@ def normalize(data,method=True):
     
     meanval = data.mean(axis=0)
     stdval = data.std(axis=0)
+
+    stdval[stdval==0]=1
     
     if method:
-       return (data-meanval)/stdval
+       return 1.0*(data-meanval)/stdval
     
-    return data-meanval
-    
-    
+    return 1.0*(data-meanval)
